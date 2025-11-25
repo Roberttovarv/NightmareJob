@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Floor
   - Player
-  - 
-  - 
-  - 
+  - Assets
+  - Spikes
+  - Background
   - 
   - 
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3599753643
+    locked: 0
+  - name: Spikes
+    uniqueID: 1974752361
     locked: 0
   - name: Floor
     uniqueID: 2604773235

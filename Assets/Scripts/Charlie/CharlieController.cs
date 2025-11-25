@@ -8,6 +8,8 @@ public class CharlieController : MonoBehaviour
     [SerializeField] public Collider2D bodyCollider;
     [SerializeField] public SpriteRenderer sprite;
 
+    [SerializeField] public bool canExit;
+
 
     public bool isGrounded;
 
