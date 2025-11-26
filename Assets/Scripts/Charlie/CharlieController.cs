@@ -30,4 +30,9 @@ public class CharlieController : MonoBehaviour
         isGrounded = feetCollider.IsTouchingLayers(LayerMask.GetMask("Floor"));
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+
+    }
+
 }

@@ -15,8 +15,7 @@ public class ExitTextHandler : MonoBehaviour
     void Start()
     {
         charlie = FindAnyObjectByType<CharlieController>();
-        Debug.Log("Shader: " + mat.shader.name);
-        Debug.Log("Tiene OutlineWidth?: " + mat.HasProperty("_OutlineWidth"));
+
     }
 
     void Update()
@@ -24,20 +23,11 @@ public class ExitTextHandler : MonoBehaviour
         if (charlie.canExit)
         {
             text.color = Color.white;
-
-
-            mat.SetColor("_OutlineColor", Color.red);
-            mat.SetFloat("_OutlineWidth", .7f);
         }
         else
         {
             text.color = Color.black;
-
-            mat.SetFloat("_OutlineWidth", .1f);
-
         }
-                text.fontMaterial = mat;
-        text.UpdateMeshPadding();
-        text.havePropertiesChanged = true;
+
     }
 }
