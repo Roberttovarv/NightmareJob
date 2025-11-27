@@ -1,16 +1,28 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Level1 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    CharlieController charlie;
+    ScenesManager scene;
     void Start()
     {
-        
+        charlie = FindFirstObjectByType<CharlieController>();
+        charlie.canExit = true;
+        scene = FindFirstObjectByType<ScenesManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void FinishLevel()
+    {
+
+        if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door")) && charlie.canExit)
+        {
+            scene.LoadNextLevel();
+        }
     }
 }

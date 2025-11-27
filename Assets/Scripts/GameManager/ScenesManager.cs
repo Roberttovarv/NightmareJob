@@ -5,8 +5,8 @@ public class ScenesManager : MonoBehaviour
 {
     public void LoadLevel(int levelIndex)
     {
-        FindFirstObjectByType<GameSessionManager>().currentLevel = levelIndex;
         SceneManager.LoadScene(levelIndex);
+        FindFirstObjectByType<GameSessionManager>().SetLevel(levelIndex);
 
     }
     public void LoadNextLevel()
@@ -14,15 +14,18 @@ public class ScenesManager : MonoBehaviour
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         int nextLevel = currentLevel + 1;
 
-        FindFirstObjectByType<GameSessionManager>().currentLevel = nextLevel;
         ProgressManager.SetMaxLevel(nextLevel);
         SceneManager.LoadScene(nextLevel);
+        FindFirstObjectByType<GameSessionManager>().SetLevel(nextLevel);
+
 
     }
     public void ReloadCurrentLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentLevel);
+        FindFirstObjectByType<GameSessionManager>().SetLevel(currentLevel);
+
     }
 
 }
