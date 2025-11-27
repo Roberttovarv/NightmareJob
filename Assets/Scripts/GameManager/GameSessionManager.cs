@@ -25,6 +25,8 @@ public class GameSessionManager : MonoBehaviour
     }
     void Start()
     {
-        // levelText.text = currentLevel + "-" + LevelsData[currentLevel][langCode];
+        levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
     }
+
+    
 }
