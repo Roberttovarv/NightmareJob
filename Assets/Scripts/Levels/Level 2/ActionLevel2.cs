@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractLevel1 : MonoBehaviour
+public class ActionLevel2 : MonoBehaviour
 {
-Level1 level;
+Level2 level;
 
     void Start()
     {
-        level = FindAnyObjectByType<Level1>();
+        level = FindFirstObjectByType<Level2>();
     }
 
     void OnAction(InputValue value)

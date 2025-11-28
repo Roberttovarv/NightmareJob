@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -9,14 +10,20 @@ public class CharlieController : MonoBehaviour
     [SerializeField] public SpriteRenderer sprite;
 
     [SerializeField] public bool canExit;
-
-
+    [SerializeField] public bool isAlive = true;
     public bool isGrounded;
 
+    IEnumerator Reload;
+
+    void Start()
+    {
+        Reload = FindAnyObjectByType<ScenesManager>().ReloadDelay();
+    }
 
     void Update()
     {
         Grounded();
+        Die();
     }
 
     void FixedUpdate()
@@ -30,9 +37,17 @@ public class CharlieController : MonoBehaviour
         isGrounded = feetCollider.IsTouchingLayers(LayerMask.GetMask("Floor"));
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        
+    void Die()
+    {
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")))
+        {
 
+            isAlive = false;
+            StartCoroutine(Reload);
+            transform.eulerAngles = new Vector3(0, 0, 90);
+        }
     }
+
+
 
 }

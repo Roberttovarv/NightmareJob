@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ScenesManager : MonoBehaviour
 {
@@ -26,6 +27,12 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(currentLevel);
         FindFirstObjectByType<GameSessionManager>().SetLevel(currentLevel);
 
+    }
+
+    public IEnumerator ReloadDelay()
+    {
+        yield return new WaitForSeconds(.3f);
+        ReloadCurrentLevel();
     }
 
 }

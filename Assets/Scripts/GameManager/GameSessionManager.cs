@@ -14,17 +14,16 @@ public class GameSessionManager : MonoBehaviour
     void Awake()
     {
         int gameSessionsNumber = FindObjectsByType<GameSessionManager>(FindObjectsSortMode.None).Length;
-        int levelTextNumber = FindObjectsByType<TextMeshProUGUI>(FindObjectsSortMode.None).Length;
         if (gameSessionsNumber > 1) Destroy(gameObject);
         else DontDestroyOnLoad(gameObject);
-        if (levelTextNumber > 1) Destroy(levelText.gameObject);
-        else DontDestroyOnLoad(levelText.gameObject);
+
 
         langCode = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         if (langCode != "es" && langCode != "en") langCode = "en";
     }
     void Start()
     {
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
         levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
 
     }
