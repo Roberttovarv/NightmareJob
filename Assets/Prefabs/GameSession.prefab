@@ -149,6 +149,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_margin.y
+      value: 18.934204
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 6481979281120528346, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
       propertyPath: m_Name
       value: Canvas

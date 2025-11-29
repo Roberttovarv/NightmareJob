@@ -1,18 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ActionLevel2 : MonoBehaviour
+public class ActionLevel7 : MonoBehaviour
 {
-    Level2 level;
-
+    Level7 level;
     void Start()
     {
-        level = FindFirstObjectByType<Level2>();
+        level = FindFirstObjectByType<Level7>();
     }
-
     void OnAction(InputValue value)
     {
         level.FinishLevel();
     }
-    
 }

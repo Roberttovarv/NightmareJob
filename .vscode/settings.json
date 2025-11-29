@@ -66,5 +66,5 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
-    "dotnet.defaultSolution": "NightmareJob.sln"
+    "dotnet.defaultSolution": "Nighmare Job.sln"
 }
