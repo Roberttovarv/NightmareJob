@@ -41,7 +41,15 @@ public class CharlieController : MonoBehaviour
     {
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")))
         {
+            isAlive = false;
+            StartCoroutine(Reload);
+            transform.eulerAngles = new Vector3(0, 0, 90);
+        }
+    }
 
+        public void Kill()
+    {
+        {
             isAlive = false;
             StartCoroutine(Reload);
             transform.eulerAngles = new Vector3(0, 0, 90);
