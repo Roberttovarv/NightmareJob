@@ -23,11 +23,25 @@ public class LevelsData
         { 5, new Dictionary<string, string>{{"es", "Hay días en los que me siento pequeño"}, {"en", "Some days I feel I'm shrinking"},
         {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
 
-        { 6, new Dictionary<string, string>{{"es", "Y otros en los que siento que este sitio me queda peuqeño"}, {"en", "And other days I feel this place is small for me"},
+        { 6, new Dictionary<string, string>{{"es", "Y otros en los que siento que este sitio me queda pequeño"}, 
+        {"en", "And other days I feel this place is small for me"},
         {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
 
         { 7, new Dictionary<string, string>{{"es", "Apagón"}, {"en", "Blackout"},
         {"hint_es", "Encuentra la salida"}, {"hint_en", "Find the way out"} } },
+
+        { 8, new Dictionary<string, string>{{"es", "¡Corre!"}, {"en", "Run!"},
+        {"hint_es", "Abre la puerta antes de que se acabe el tiempo"}, {"hint_en", "Open the door before you run out of time"} } },
+
+        { 9, new Dictionary<string, string>{{"es", "Estoy cansado, tengo sueño..."}, {"en", "I'm tired and so sleepy..."},
+        {"hint_es", "Bebe algo de café"}, {"hint_en", "Get some coffee"} } },
+
+        { 10, new Dictionary<string, string>{{"es", "Me han hecho un reporte disciplinario. Debo conseguirlo"}, 
+        {"en", "I've been given a disciplinary report. I need to find it."},
+        {"hint_es", "Encuentra el documento"}, {"hint_en", "Find the document"} } },
+
+        { 11, new Dictionary<string, string>{{"es", "Debo destruirlo"}, {"en", "I have to destroy it"},
+        {"hint_es", "Tíralo en la basura"}, {"hint_en", "Throuw it un the trash can"} } },
     };
 }
 
