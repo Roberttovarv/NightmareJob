@@ -42,6 +42,33 @@ public class LevelsData
 
         { 11, new Dictionary<string, string>{{"es", "Debo destruirlo"}, {"en", "I have to destroy it"},
         {"hint_es", "Tíralo en la basura"}, {"hint_en", "Throuw it un the trash can"} } },
+
+        { 12, new Dictionary<string, string>{{"es", "Demasiada cafeína"}, {"en", "Too much coffee"},
+        {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
+
+        { 13, new Dictionary<string, string>{{"es", "¡Al infinito y más allá!"}, {"en", "To infinite and beyond"},
+        {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
+
+        { 14, new Dictionary<string, string>{{"es", "El moonwalker"}, {"en", "Moonwalker"},
+        {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
+
+        { 15, new Dictionary<string, string>{{"es", "Necesito más tiempo"}, {"en", "I need more time"},
+        {"hint_es", "Interactúa con el reloj"}, {"hint_en", "Interact with the clock"} } },
+
+        { 16, new Dictionary<string, string>{{"es", "Desobedece las reglas"}, {"en", "Disobey the rules"},
+        {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
+
+        { 17, new Dictionary<string, string>{{"es", "Como una rata"}, {"en", "Like a rat"},
+        {"hint_es", "Escapa en por la ventilación"}, {"hint_en", "Escape through vents"} } },
+        
+        { 18, new Dictionary<string, string>{{"es", "Debo recoger mis apuntes"}, {"en", "I gotta get my notes"},
+        {"hint_es", "Ve a la pizarra y coge tus notas"}, {"hint_en", "Go to the board and get your notes"} } },
+
+        { 19, new Dictionary<string, string>{{"es", "Estoy sediento"}, {"en", "I'm thristy"},
+        {"hint_es", "Bebe agua"}, {"hint_en", "Drink some water"} } },
+
+        { 20, new Dictionary<string, string>{{"es", "Todo es un obstáculo"}, {"en", "Everything is an obstacle"},
+        {"hint_es", "Salta los obstáculos para llegar a la puerta"}, {"hint_en", "Jump to obstacles to reach the door"} } },
     };
 }
 

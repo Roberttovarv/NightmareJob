@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class JumpManager : MonoBehaviour
 {
-    [SerializeField] float jumpForce = 12f;
+    [SerializeField] public float jumpForce = 12f;
     [SerializeField] float coyoteTime = .1f;
 
     float coyoteTimer; CharlieController charlie;

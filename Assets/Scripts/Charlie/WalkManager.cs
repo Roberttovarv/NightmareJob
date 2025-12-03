@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class WalkManager : MonoBehaviour
 {
- [SerializeField] Animator animator;
-    [SerializeField] float walkVel = 4.5f;
+    [SerializeField] Animator animator;
+    [SerializeField] public float walkVel = 4.5f;
     Vector2 moveInput;
     int dir = 1;
     Rigidbody2D rigidBody;
