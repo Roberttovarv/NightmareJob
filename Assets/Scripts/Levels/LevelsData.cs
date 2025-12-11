@@ -15,7 +15,7 @@ public class LevelsData
             {"hint_es", "Abre la puerta cuando la luz esté encendida"}, {"hint_en", "Open the door when the light is on"} } },
 
         { 3, new Dictionary<string, string>{{"es", "Debo enviar el informe"}, {"en", "I gotta send the report"},
-            {"hint_es", "Envía un correo en tu ordenador"}, {"hint_en", "Send and email on your computer"} } },
+            {"hint_es", "Envía un correo en tu ordenador"}, {"hint_en", "Send an email on your computer"} } },
 
         { 4, new Dictionary<string, string>{{"es", "Necesito aire fresco"}, {"en", "I need fresh air"}, 
             {"hint_es", "Sal por la ventana"}, {"hint_en", "Get out throught the window"} } },
@@ -25,7 +25,7 @@ public class LevelsData
 
         { 6, new Dictionary<string, string>{{"es", "Y otros en los que siento que este sitio me queda pequeño"}, 
         {"en", "And other days I feel this place is small for me"},
-        {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
+        {"hint_es", "MEmoriza el mapa y abre la puerta"}, {"hint_en", "Remember the map open the door"} } },
 
         { 7, new Dictionary<string, string>{{"es", "Apagón"}, {"en", "Blackout"},
         {"hint_es", "Encuentra la salida"}, {"hint_en", "Find the way out"} } },
@@ -41,13 +41,14 @@ public class LevelsData
         {"hint_es", "Encuentra el documento"}, {"hint_en", "Find the document"} } },
 
         { 11, new Dictionary<string, string>{{"es", "Debo destruirlo"}, {"en", "I have to destroy it"},
-        {"hint_es", "Tíralo en la basura"}, {"hint_en", "Throuw it un the trash can"} } },
+        {"hint_es", "Tíralo en la basura"}, {"hint_en", "Throuw it in the trash can"} } },
 
         { 12, new Dictionary<string, string>{{"es", "Demasiada cafeína"}, {"en", "Too much coffee"},
         {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
 
         { 13, new Dictionary<string, string>{{"es", "¡Al infinito y más allá!"}, {"en", "To infinite and beyond"},
-        {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
+        {"hint_es", "Llega a la puerta sin morir, el camino más fácil es por arriba"}, 
+        {"hint_en", "Reach the door without dying, the easiest way is from above"} } },
 
         { 14, new Dictionary<string, string>{{"es", "El moonwalker"}, {"en", "Moonwalker"},
         {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
@@ -69,6 +70,9 @@ public class LevelsData
 
         { 20, new Dictionary<string, string>{{"es", "Todo es un obstáculo"}, {"en", "Everything is an obstacle"},
         {"hint_es", "Salta los obstáculos para llegar a la puerta"}, {"hint_en", "Jump to obstacles to reach the door"} } },
+
+        { 21, new Dictionary<string, string>{{"es", "La gravedad del asunto"}, {"en", "The gravity of the matter"},
+        {"hint_es", "Tienes que controlar la gravedad con el botón de salto"}, {"hint_en", "You have to control gravity with jump button"} } },
     };
 }
 
