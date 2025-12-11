@@ -73,6 +73,12 @@ public class LevelsData
 
         { 21, new Dictionary<string, string>{{"es", "La gravedad del asunto"}, {"en", "The gravity of the matter"},
         {"hint_es", "Tienes que controlar la gravedad con el botón de salto"}, {"hint_en", "You have to control gravity with jump button"} } },
+
+        { 22, new Dictionary<string, string>{{"es", "Este trabajo me va a matar"}, {"en", "This job is gonna kill me"},
+        {"hint_es", "Esquiva las espinas"}, {"hint_en", "Avoid the spikes"} } },
+
+        { 23, new Dictionary<string, string>{{"es", "Del revés"}, {"en", "Inside out"},
+        {"hint_es", "Llega a la puerta"}, {"hint_en", "Reach the door"} } },
     };
 }
 
