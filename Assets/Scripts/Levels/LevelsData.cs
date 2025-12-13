@@ -79,6 +79,12 @@ public class LevelsData
 
         { 23, new Dictionary<string, string>{{"es", "Del revés"}, {"en", "Inside out"},
         {"hint_es", "Llega a la puerta"}, {"hint_en", "Reach the door"} } },
+
+        { 24, new Dictionary<string, string>{{"es", "Cierra la oficina"}, {"en", "Close de office"},
+        {"hint_es", "Apaga las luces"}, {"hint_en", "Turn the lights off"} } },
+
+        { 25, new Dictionary<string, string>{{"es", "Un día más en este lugar..."}, {"en", "Another day in this place..."},
+        {"hint_es", "Evita morir"}, {"hint_en", "Avoid to die"} } },
     };
 }
 
