@@ -17,6 +17,10 @@ public class Level21 : MonoBehaviour
         if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door")) && charlie.canExit)
            { scene.LoadNextLevel();}
     }
+    void OnAction(InputValue value)
+    {
+           FinishLevel();
+    }
 
     void Flip()
     {
@@ -24,10 +28,6 @@ public class Level21 : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.y *= -1;
         transform.localScale = scale;
-    }
-    void OnAction(InputValue value)
-    {
-           FinishLevel();
     }
 
     void OnJump(InputValue value)

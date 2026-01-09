@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Level22 : MonoBehaviour
+public class Level23 : MonoBehaviour
 {
- CharlieController charlie;
+    CharlieController charlie;
     ScenesManager scene;
     void Start()
     {
@@ -14,11 +14,12 @@ public class Level22 : MonoBehaviour
 
     void FinishLevel()
     {
-        if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door")) && charlie.canExit)
-           { scene.LoadNextLevel();}
+        if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door"))
+        && charlie.canExit)
+        { scene.LoadNextLevel(); }
     }
     void OnAction(InputValue value)
     {
-           FinishLevel();
+        FinishLevel();
     }
 }
