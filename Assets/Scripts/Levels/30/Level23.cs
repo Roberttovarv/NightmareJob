@@ -16,7 +16,9 @@ public class Level23 : MonoBehaviour
     {
         if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door"))
         && charlie.canExit)
-        { scene.LoadNextLevel(); }
+        {
+            scene.LoadNextLevel();
+        }
     }
     void OnAction(InputValue value)
     {
