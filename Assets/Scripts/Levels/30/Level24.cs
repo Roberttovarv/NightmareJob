@@ -38,7 +38,7 @@ public class Level24 : MonoBehaviour
         if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("WallLamp"))
         && currentItem.HasValue)
         {
-            lampIsOff[currentItem.Value] = !lampIsOff[currentItem.Value];
+            lampIsOff[currentItem.Value -1] = !lampIsOff[currentItem.Value -1];
             if (currentLamp != null) currentLamp.enabled = !currentLamp.enabled;
 
         }
@@ -50,7 +50,6 @@ public class Level24 : MonoBehaviour
         {
             currentItem = int.Parse(collision.gameObject.name);
             currentLamp = collision.GetComponent<Light2D>();
-            print(currentItem);
         }
     }
     void OnTriggerExit2D(Collider2D collision)
@@ -64,9 +63,13 @@ public class Level24 : MonoBehaviour
 
     void AreAllOff()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < lampIsOff.Length; i++)
         {
-            if (!lampIsOff[i]) charlie.canExit = false;
+        if (!lampIsOff[i])
+        {
+            charlie.canExit = false;
+            return;
+        }            
         }
         charlie.canExit = true;
     }
