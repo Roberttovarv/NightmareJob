@@ -8,7 +8,7 @@ public class LevelsData
     {
         { 0, new Dictionary<string, string> { { "es", "Nightmare Job" }, { "en", "Load Screen" } } },
 
-        { 1, new Dictionary<string, string> { { "es", "Debo salir de la ofi..." }, { "en", "I must get out of the office..." }, 
+        { 1, new Dictionary<string, string> { { "es", "Debo salir de la ofi..." }, { "en", "I must get out of the office..." },
             {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
 
         { 2, new Dictionary<string, string> { { "es", "El momento perfecto" }, { "en", "The perfect timing" },
@@ -17,13 +17,13 @@ public class LevelsData
         { 3, new Dictionary<string, string>{{"es", "Debo enviar el informe"}, {"en", "I gotta send the report"},
             {"hint_es", "Envía un correo en tu ordenador"}, {"hint_en", "Send an email on your computer"} } },
 
-        { 4, new Dictionary<string, string>{{"es", "Necesito aire fresco"}, {"en", "I need fresh air"}, 
+        { 4, new Dictionary<string, string>{{"es", "Necesito aire fresco"}, {"en", "I need fresh air"},
             {"hint_es", "Sal por la ventana"}, {"hint_en", "Get out throught the window"} } },
 
         { 5, new Dictionary<string, string>{{"es", "Hay días en los que me siento pequeño"}, {"en", "Some days I feel I'm shrinking"},
         {"hint_es", "Solo abre la puerta"}, {"hint_en", "Just open the door"} } },
 
-        { 6, new Dictionary<string, string>{{"es", "Y otros en los que siento que este sitio me queda pequeño"}, 
+        { 6, new Dictionary<string, string>{{"es", "Y otros en los que siento que este sitio me queda pequeño"},
         {"en", "And other days I feel this place is small for me"},
         {"hint_es", "MEmoriza el mapa y abre la puerta"}, {"hint_en", "Remember the map open the door"} } },
 
@@ -36,7 +36,7 @@ public class LevelsData
         { 9, new Dictionary<string, string>{{"es", "Estoy cansado, tengo sueño..."}, {"en", "I'm tired and so sleepy..."},
         {"hint_es", "Bebe algo de café"}, {"hint_en", "Get some coffee"} } },
 
-        { 10, new Dictionary<string, string>{{"es", "Me han hecho un reporte disciplinario. Debo conseguirlo"}, 
+        { 10, new Dictionary<string, string>{{"es", "Me han hecho un reporte disciplinario. Debo conseguirlo"},
         {"en", "I've been given a disciplinary report. I need to find it."},
         {"hint_es", "Encuentra el documento"}, {"hint_en", "Find the document"} } },
 
@@ -47,7 +47,7 @@ public class LevelsData
         {"hint_es", "Llega a la puerta sin morir"}, {"hint_en", "Reach the door without dying"} } },
 
         { 13, new Dictionary<string, string>{{"es", "¡Al infinito y más allá!"}, {"en", "To infinite and beyond"},
-        {"hint_es", "Llega a la puerta sin morir, el camino más fácil es por arriba"}, 
+        {"hint_es", "Llega a la puerta sin morir, el camino más fácil es por arriba"},
         {"hint_en", "Reach the door without dying, the easiest way is from above"} } },
 
         { 14, new Dictionary<string, string>{{"es", "El moonwalker"}, {"en", "Moonwalker"},
@@ -61,7 +61,7 @@ public class LevelsData
 
         { 17, new Dictionary<string, string>{{"es", "Como una rata"}, {"en", "Like a rat"},
         {"hint_es", "Escapa en por la ventilación"}, {"hint_en", "Escape through vents"} } },
-        
+
         { 18, new Dictionary<string, string>{{"es", "Debo recoger mis apuntes"}, {"en", "I gotta get my notes"},
         {"hint_es", "Ve a la pizarra y coge tus notas"}, {"hint_en", "Go to the board and get your notes"} } },
 
@@ -77,7 +77,7 @@ public class LevelsData
         { 22, new Dictionary<string, string>{{"es", "Este trabajo me va a matar"}, {"en", "This job is gonna kill me"},
         {"hint_es", "Esquiva las espinas"}, {"hint_en", "Avoid the spikes"} } },
 
-        { 23, new Dictionary<string, string>{{"es", "Mi mundo se cae a pedazos"}, 
+        { 23, new Dictionary<string, string>{{"es", "Mi mundo se cae a pedazos"},
         {"en", "My world is tearing apart"},
         {"hint_es", "Llega a la puerta"}, {"hint_en", "Reach the door"} } },
 
@@ -86,6 +86,23 @@ public class LevelsData
 
         { 25, new Dictionary<string, string>{{"es", "Un día más en este lugar..."}, {"en", "Another day in this place..."},
         {"hint_es", "Evita morir"}, {"hint_en", "Avoid to die"} } },
+
+        { 26, new Dictionary<string, string>{{"es", "Y cada vez se pone peor"}, {"en", "And everytime it gets worse"},
+        {"hint_es", "Sobrevive"}, {"hint_en", "Survive"} } },
+
+        { 27, new Dictionary<string, string>{{"es", "Pero cuando pienso en mi familia este sitio es inofensivo"},
+        {"en", "But when I think about my family, this place is harmless"},
+        {"hint_es", "Solo sal"}, {"hint_en", "Juts leave"} } },
+
+        { 28, new Dictionary<string, string>{{"es", "Mi jefe es un desgraciado, me odia"}, {"en", "My boss is an asshole, he hates me"},
+        {"hint_es", "Sal de la ofi"}, {"hint_en", "Get out of the office"} } },
+
+        { 29, new Dictionary<string, string>{{"es", "Me está presionando mucho"}, {"en", "He puts a lot of preasure on me"},
+        {"hint_es", "Evita morir"}, {"hint_en", "Avoid to die"} } },
+
+        { 30, new Dictionary<string, string>{{"es", "He descubierto que tiene una amante, lo voy a confrontar"}, 
+        {"en", "I've discovered he has an affair, I'm gonna confrontate him"},
+        {"hint_es", "Envíale un correo contándole lo que sabes"}, {"hint_en", "Send him an email telling him what you know"} } },
     };
 }
 

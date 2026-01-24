@@ -34,9 +34,12 @@ public class Level10 : MonoBehaviour
 
     void HandleDocument()
     {
-        foreach (var slide in childDoc)
-        {   
-            slide.enabled = slide.enabled ? false : true;
+        if (!charlie.canExit)
+        {
+            foreach (var slide in childDoc)
+            {
+                slide.enabled = slide.enabled ? false : true;
+            }
         }
     }
 }
