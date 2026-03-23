@@ -154,6 +154,14 @@ PrefabInstance:
       value: 18.934204
       objectReference: {fileID: 0}
     - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b92751bcb5b9f1e4ebef4a33879b8c2d, type: 2}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: cb94d68384d70f649915bc96991c130f, type: 2}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
       objectReference: {fileID: 0}

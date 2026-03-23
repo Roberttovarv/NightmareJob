@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProgressManager
 {
     private const string MaxLevelKey = "MaxLevelUnlocked";
-    private const int MinLevel = 1;
+    private const int MinLevel = 3;
 
     public static int GetMaxLevelReached()
     {
