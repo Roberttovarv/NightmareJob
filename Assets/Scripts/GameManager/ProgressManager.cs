@@ -3,7 +3,15 @@ using UnityEngine;
 public class ProgressManager
 {
     private const string MaxLevelKey = "MaxLevelUnlocked";
-    private const int MinLevel = 3;
+    private const int MinLevel = 1;
+
+    public static void InitializeProgress()
+    {
+        if (!PlayerPrefs.HasKey(MaxLevelKey))
+        {
+            PlayerPrefs.SetInt(MaxLevelKey, MinLevel);
+        }
+    }
 
     public static int GetMaxLevelReached()
     {
@@ -20,7 +28,4 @@ public class ProgressManager
             PlayerPrefs.Save();
         }
     }
-
-
-
 }

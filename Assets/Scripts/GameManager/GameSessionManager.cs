@@ -3,9 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Globalization;
 
-
 public class GameSessionManager : MonoBehaviour
 {
+    private const string LanguageKey = "language";
+    private const string MusicKey = "musicValue";
+    private const string SoundKey = "soundValue";
+
     [SerializeField] TextMeshProUGUI levelText;
 
     public string langCode;
@@ -14,27 +17,81 @@ public class GameSessionManager : MonoBehaviour
     void Awake()
     {
         int gameSessionsNumber = FindObjectsByType<GameSessionManager>(FindObjectsSortMode.None).Length;
-        if (gameSessionsNumber > 1) Destroy(gameObject);
-        else DontDestroyOnLoad(gameObject);
+        if (gameSessionsNumber > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
+        DontDestroyOnLoad(gameObject);
 
-        langCode = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-        if (langCode != "es" && langCode != "en") langCode = "en";
+        InitializeSessionData();
     }
+
     void Start()
     {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-        levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
-
+        RefreshLevelText();
     }
+
     public void SetLevel(int levelIndex)
     {
         currentLevel = levelIndex;
-        levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
+        RefreshLevelText();
         FindFirstObjectByType<CharlieController>().canExit = false;
-
     }
 
+    private void InitializeSessionData()
+    {
+        bool saveNeeded = false;
 
+        ProgressManager.InitializeProgress();
 
+        if (!PlayerPrefs.HasKey(MusicKey))
+        {
+            PlayerPrefs.SetInt(MusicKey, 1);
+            saveNeeded = true;
+        }
+
+        if (!PlayerPrefs.HasKey(SoundKey))
+        {
+            PlayerPrefs.SetInt(SoundKey, 1);
+            saveNeeded = true;
+        }
+
+        if (!PlayerPrefs.HasKey(LanguageKey))
+        {
+            PlayerPrefs.SetString(LanguageKey, GetDefaultLanguage());
+            saveNeeded = true;
+        }
+
+        langCode = PlayerPrefs.GetString(LanguageKey, "en");
+        if (langCode != "es" && langCode != "en")
+        {
+            langCode = "en";
+            PlayerPrefs.SetString(LanguageKey, langCode);
+            saveNeeded = true;
+        }
+
+        if (saveNeeded)
+        {
+            PlayerPrefs.Save();
+        }
+    }
+
+    private string GetDefaultLanguage()
+    {
+        string systemLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+        return systemLanguage == "es" || systemLanguage == "en" ? systemLanguage : "en";
+    }
+
+    private void RefreshLevelText()
+    {
+        if (levelText == null)
+        {
+            return;
+        }
+
+        levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
+    }
 }
