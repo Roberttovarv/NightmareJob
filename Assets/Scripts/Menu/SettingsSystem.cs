@@ -1,19 +1,27 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsSystem : MonoBehaviour
 {
-    public void SetSound()
+    [SerializeField] public GameObject languagePanel;
+    [SerializeField] public GameObject settingsPanel;
+    [SerializeField] public TextMeshProUGUI buttonText;
+    void Start()
     {
-        int currentValue = PlayerPrefs.GetInt("soundValue");
-        int newValue = currentValue == 1 ? 0 : 1;
-        PlayerPrefs.SetInt("soundValue", newValue);
-        PlayerPrefs.Save();
+        languagePanel.SetActive(false);
+        buttonText.text = PlayerPrefs.GetString("language").ToUpperInvariant();
     }
-    public void SetMusic()
+    public void GoToMenu()
     {
-        int currentValue = PlayerPrefs.GetInt("musicValue");
-        int newValue = currentValue == 1 ? 0 : 1;
-        PlayerPrefs.SetInt("musicValue", newValue);
-        PlayerPrefs.Save();
+        SceneManager.LoadScene("Menu");
     }
+
+    public void OpenLaguages()
+    {
+        languagePanel.SetActive(true);
+        settingsPanel.SetActive(false);
+    }
+
 }

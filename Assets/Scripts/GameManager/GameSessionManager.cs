@@ -24,14 +24,21 @@ public class GameSessionManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         InitializeSessionData();
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     void Start()
     {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         RefreshLevelText();
+
     }
 
     public void SetLevel(int levelIndex)
@@ -83,6 +90,13 @@ public class GameSessionManager : MonoBehaviour
     {
         string systemLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
         return systemLanguage == "es" || systemLanguage == "en" ? systemLanguage : "en";
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        currentLevel = scene.buildIndex;
+        langCode = PlayerPrefs.GetString(LanguageKey, "en");
+        RefreshLevelText();
     }
 
     private void RefreshLevelText()

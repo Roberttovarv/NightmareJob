@@ -9,9 +9,10 @@ public class SettingsVolumeButtons : MonoBehaviour
         sound
     }
 
-    [SerializeField] Type type;
-    TextMeshProUGUI buttonText;
-    string value;
+    [SerializeField] private Type type;
+
+    private TextMeshProUGUI buttonText;
+    private string value;
 
     void Awake()
     {
@@ -34,5 +35,16 @@ public class SettingsVolumeButtons : MonoBehaviour
         int currentValue = PlayerPrefs.GetInt(value, 1);
 
         buttonText.text = currentValue == 1 ? "Turn Off" : "Turn On";
+    }
+
+    public void ToggleValue()
+    {
+        int currentValue = PlayerPrefs.GetInt(value, 1);
+        int newValue = currentValue == 1 ? 0 : 1;
+
+        PlayerPrefs.SetInt(value, newValue);
+        PlayerPrefs.Save();
+
+        SetButtonText();
     }
 }

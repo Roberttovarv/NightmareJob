@@ -4,6 +4,7 @@ public class ProgressManager
 {
     private const string MaxLevelKey = "MaxLevelUnlocked";
     private const int MinLevel = 1;
+    private const int MaxLevel = 60;
 
     public static void InitializeProgress()
     {
@@ -15,16 +16,17 @@ public class ProgressManager
 
     public static int GetMaxLevelReached()
     {
-        return PlayerPrefs.GetInt(MaxLevelKey, MinLevel);
+        return Mathf.Clamp(PlayerPrefs.GetInt(MaxLevelKey, MinLevel), MinLevel, MaxLevel);
     }
 
     public static void SetMaxLevel(int levelNumber)
     {
         int currentMax = GetMaxLevelReached();
+        int clampedLevel = Mathf.Clamp(levelNumber, MinLevel, MaxLevel);
 
-        if (levelNumber > currentMax)
+        if (clampedLevel > currentMax)
         {
-            PlayerPrefs.SetInt(MaxLevelKey, levelNumber);
+            PlayerPrefs.SetInt(MaxLevelKey, clampedLevel);
             PlayerPrefs.Save();
         }
     }

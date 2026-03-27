@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6026149047171094139}
   - component: {fileID: 2835707284411660168}
   m_Layer: 5
-  m_Name: CustomButton
+  m_Name: LanguageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -472, y: 37.926}
-  m_SizeDelta: {x: 65, y: 65}
+  m_SizeDelta: {x: 150, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3782877960298083439
 CanvasRenderer:
@@ -156,7 +156,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -14.8835, y: -14.8835}
+  m_SizeDelta: {x: -30.8004, y: -35.1317}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6752361436702754548
 CanvasRenderer:
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b92751bcb5b9f1e4ebef4a33879b8c2d, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 80f09cf62bd856b47a091e1696f32b2a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: cb94d68384d70f649915bc96991c130f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 75
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
