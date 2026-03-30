@@ -745,6 +745,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSession
       objectReference: {fileID: 0}
+    - target: {fileID: 7026918930700832199, guid: 1d602da9163a3a245a0235d35cd63b3a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.400024
+      objectReference: {fileID: 0}
     - target: {fileID: 7731441670838924956, guid: 1d602da9163a3a245a0235d35cd63b3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4630692
