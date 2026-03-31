@@ -58,6 +58,12 @@ public class SettingsLanguages : MonoBehaviour
                     gameSession.langCode = currentLang.ToString();
                 }
 
+                TextHandler[] textHandlers = FindObjectsByType<TextHandler>(FindObjectsSortMode.None);
+                foreach (TextHandler textHandler in textHandlers)
+                {
+                    textHandler.RefreshText();
+                }
+
                 ClosePanel();
                 EventSystem.current.SetSelectedGameObject(defaultButton);
             });

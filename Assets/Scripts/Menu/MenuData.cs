@@ -6,7 +6,7 @@ public class MenuData
     public static Dictionary<string, Dictionary<string, string>> Menu =
     new Dictionary<string, Dictionary<string, string>>()
     {
-        { "start", new Dictionary<string, string> { { "es", "Comenzar partida" }, { "en", "Start game" } } },
+        { "start", new Dictionary<string, string> { { "es", "Jugar" }, { "en", "Start" } } },
         { "continue", new Dictionary<string, string> { { "es", "Continuar" }, { "en", "Continue" } } },
         { "levels", new Dictionary<string, string> { { "es", "Niveles" }, { "en", "Levels" } } },
         { "settings", new Dictionary<string, string> { { "es", "Configuración" }, { "en", "Settings" } } },
@@ -16,7 +16,7 @@ public class MenuData
     public static Dictionary<string, Dictionary<string, string>> Settings =
     new Dictionary<string, Dictionary<string, string>>()
     {
-        { "lang", new Dictionary<string, string> { { "es", "Idioma" }, { "en", "Language" } } },
+        { "language", new Dictionary<string, string> { { "es", "Idioma" }, { "en", "Language" } } },
         { "sound", new Dictionary<string, string> { { "es", "Sonido" }, { "en", "Sound" } } },
         { "music", new Dictionary<string, string> { { "es", "Música" }, { "en", "Music" } } },
     };
