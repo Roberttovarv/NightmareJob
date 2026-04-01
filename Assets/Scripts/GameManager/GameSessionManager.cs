@@ -11,6 +11,8 @@ public class GameSessionManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI levelText;
 
+    public static bool IsPaused { get; private set; }
+
     public string langCode;
     public int currentLevel;
 
@@ -46,6 +48,18 @@ public class GameSessionManager : MonoBehaviour
         currentLevel = levelIndex;
         RefreshLevelText();
         FindFirstObjectByType<CharlieController>().canExit = false;
+    }
+
+    public static void Pause()
+    {
+        Time.timeScale = 0f;
+        IsPaused = true;
+    }
+
+    public static void Resume()
+    {
+        Time.timeScale = 1f;
+        IsPaused = false;
     }
 
     private void InitializeSessionData()

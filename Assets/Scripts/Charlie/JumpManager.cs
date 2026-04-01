@@ -18,6 +18,10 @@ public class JumpManager : MonoBehaviour
     }
     void OnJump(InputValue value)
     {
+        if (GameSessionManager.IsPaused)
+        {
+            return;
+        }
         if (CanJump()) { charlie.rigidBody.linearVelocity += new Vector2(0, jumpForce); coyoteTimer = 0; }
     }
     void TimersManager()
@@ -27,6 +31,7 @@ public class JumpManager : MonoBehaviour
     }
     bool CanJump()
     {
+
         return coyoteTimer > 0;
     }
 }

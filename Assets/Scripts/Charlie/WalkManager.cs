@@ -19,6 +19,10 @@ public class WalkManager : MonoBehaviour
     }
     public void Walk()
     {
+        if (GameSessionManager.IsPaused)
+        {
+            return;
+        }
         rigidBody.linearVelocity = new Vector2(moveInput.x * walkVel, rigidBody.linearVelocityY);
 
         dir = rigidBody.linearVelocity.x < -0.1f ? -1 :

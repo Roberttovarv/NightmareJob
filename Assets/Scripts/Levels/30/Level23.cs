@@ -10,6 +10,7 @@ public class Level23 : MonoBehaviour
         charlie = FindFirstObjectByType<CharlieController>();
         scene = FindFirstObjectByType<ScenesManager>();
         charlie.canExit = true;
+        charlie.rigidBody.gravityScale = 3.5f;
     }
 
     void FinishLevel()
