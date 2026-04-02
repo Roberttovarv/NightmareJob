@@ -21,20 +21,22 @@ public class GameplayUI : MonoBehaviour
 
     public void ActivatePause()
     {
+        if (GameSessionManager.IsPaused) return;
         pausePanel.SetActive(true);
         GameSessionManager.Pause();
     }
-        public void DeactivatePause()
+    public void DeactivatePause()
     {
         pausePanel.SetActive(false);
         GameSessionManager.Resume();
     }
-        public void ActivateHelp()
+    public void ActivateHelp()
     {
+        if (GameSessionManager.IsPaused) return;
         helpPanel.SetActive(true);
         GameSessionManager.Pause();
     }
-        public void DeactivateHelp()
+    public void DeactivateHelp()
     {
         helpPanel.SetActive(false);
         GameSessionManager.Resume();

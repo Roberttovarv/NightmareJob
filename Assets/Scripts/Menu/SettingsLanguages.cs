@@ -55,10 +55,10 @@ public class SettingsLanguages : MonoBehaviour
                 GameSessionManager gameSession = FindFirstObjectByType<GameSessionManager>();
                 if (gameSession != null)
                 {
-                    gameSession.langCode = currentLang.ToString();
+                    GameSessionManager.langCode = currentLang.ToString();
                 }
 
-                TextHandler[] textHandlers = FindObjectsByType<TextHandler>(FindObjectsSortMode.None);
+                TextHandler[] textHandlers = FindObjectsByType<TextHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None);
                 foreach (TextHandler textHandler in textHandlers)
                 {
                     textHandler.RefreshText();

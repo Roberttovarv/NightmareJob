@@ -13,6 +13,13 @@ public class ScenesManager : MonoBehaviour
     public void LoadNextLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
+
+        if (GameSessionManager.maxGameLeves == currentLevel)
+        {
+            SceneManager.LoadScene("Menu");
+            return;
+        }
+
         int nextLevel = currentLevel + 1;
 
         ProgressManager.SetMaxLevel(nextLevel);

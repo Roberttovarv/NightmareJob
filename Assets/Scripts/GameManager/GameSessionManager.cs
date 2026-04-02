@@ -13,8 +13,9 @@ public class GameSessionManager : MonoBehaviour
 
     public static bool IsPaused { get; private set; }
 
-    public string langCode;
-    public int currentLevel;
+    public static int maxGameLeves = 30;
+    public static string langCode;
+    public static int currentLevel;
 
     void Awake()
     {
@@ -120,6 +121,21 @@ public class GameSessionManager : MonoBehaviour
             return;
         }
 
-        levelText.text = currentLevel + " - " + LevelsData.level[currentLevel][langCode];
+        if (!LevelsData.level.TryGetValue(currentLevel, out var levelData))
+        {
+            levelText.text = currentLevel.ToString();
+            return;
+        }
+
+        if (!levelData.TryGetValue(langCode, out var localizedLevelText))
+        {
+            if (!levelData.TryGetValue("en", out localizedLevelText))
+            {
+                levelText.text = currentLevel.ToString();
+                return;
+            }
+        }
+
+        levelText.text = currentLevel + " - " + localizedLevelText;
     }
 }
