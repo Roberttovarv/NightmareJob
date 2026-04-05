@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using System.Diagnostics;
 using System;
 
 public class LevelSelector : MonoBehaviour
@@ -17,9 +16,11 @@ public class LevelSelector : MonoBehaviour
 
     public int totalLevels = 60;
     public int levelsPerPage = 32;
+    private bool lastInput;
 
     private int currentPage = 0;
     private List<GameObject> buttons = new List<GameObject>();
+    private GameObject firstButton;
 
     private int TotalPages => Mathf.CeilToInt((float)totalLevels / levelsPerPage);
 
@@ -30,6 +31,23 @@ public class LevelSelector : MonoBehaviour
         UpdateNavigationButtons();
     }
 
+    void Update()
+    {
+        if (InputDeviceManager.isController != lastInput)
+        {
+            lastInput = InputDeviceManager.isController;
+            if (lastInput)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(firstButton);
+            }
+            else
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
+    }
+
     void GenerateButtons()
     {
         for (int i = 0; i < levelsPerPage; i++)
@@ -37,7 +55,7 @@ public class LevelSelector : MonoBehaviour
             GameObject buttonObject = Instantiate(customButton, buttonContainer);
             buttons.Add(buttonObject);
         }
-        EventSystem.current.SetSelectedGameObject(buttons[0]);
+        firstButton = buttons[0];
     }
 
     void RenderPage()
@@ -85,7 +103,12 @@ public class LevelSelector : MonoBehaviour
             RenderPage();
             UpdateNavigationButtons();
         }
-        EventSystem.current.SetSelectedGameObject(buttons[0]);
+        firstButton = buttons[0];
+        if (!firstButton.GetComponentInChildren<Button>().interactable)
+        {
+            firstButton = prevButton;
+        }
+        ;
     }
 
     public void PrevPage()
@@ -96,7 +119,7 @@ public class LevelSelector : MonoBehaviour
             RenderPage();
             UpdateNavigationButtons();
         }
-        EventSystem.current.SetSelectedGameObject(buttons[0]);
+        firstButton = buttons[0];
 
     }
 

@@ -1,22 +1,61 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayUI : MonoBehaviour
 {
     private static GameplayUI instance;
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject helpPanel;
-    void Awake()
-    {
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+    [SerializeField] GameObject controllerLayout;
+    [SerializeField] GameObject mnkLayout;
+    [SerializeField] GameObject rootUI;
 
-        instance = this;
-        DontDestroyOnLoad(gameObject);
-        pausePanel.SetActive(false);
-        helpPanel.SetActive(false);
+    private bool lastInput;
+    private bool isLevel;
+
+    void Start()
+    {
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+    }
+
+void Awake()
+{
+    if (instance != null)
+    {
+        Destroy(gameObject);
+        return;
+    }
+
+    instance = this;
+    DontDestroyOnLoad(gameObject);
+
+    SceneManager.sceneLoaded += OnSceneLoaded;
+
+    pausePanel.SetActive(false);
+    helpPanel.SetActive(false);
+}
+
+void OnDestroy()
+{
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+}
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isLevel = scene.name.Contains("Level ");
+        print(scene.name);
+
+        rootUI.SetActive(isLevel);
+        UpdateInputUI();
+    }
+
+    void Update()
+    {
+        if (!isLevel) return;
+        if (InputDeviceManager.isController != lastInput)
+        {
+            lastInput = InputDeviceManager.isController;
+            UpdateInputUI();
+        }
     }
 
     public void ActivatePause()
@@ -41,6 +80,18 @@ public class GameplayUI : MonoBehaviour
         helpPanel.SetActive(false);
         GameSessionManager.Resume();
     }
-
+    void UpdateInputUI()
+    {
+        if (lastInput)
+        {
+            controllerLayout.SetActive(true);
+            mnkLayout.SetActive(false);
+        }
+        else
+        {
+            controllerLayout.SetActive(false);
+            mnkLayout.SetActive(true);
+        }
+    }
 
 }

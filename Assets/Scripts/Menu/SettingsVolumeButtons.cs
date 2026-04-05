@@ -1,7 +1,10 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SettingsVolumeButtons : MonoBehaviour
+
+
 {
     private enum Type
     {
@@ -10,41 +13,44 @@ public class SettingsVolumeButtons : MonoBehaviour
     }
 
     [SerializeField] private Type type;
+    [SerializeField] Sprite activeImg;
+    [SerializeField] Sprite deactImg;
 
-    private TextMeshProUGUI buttonText;
+
+    private Image buttonImage;
     private string value;
 
     void Awake()
     {
-        buttonText = GetComponentInChildren<TextMeshProUGUI>();
+        buttonImage = GetComponentInChildren<Image>();
         value = type == Type.music ? "musicValue" : "soundValue";
     }
 
     void Start()
     {
-        SetButtonText();
+        SetButtonColor();
     }
 
     void OnEnable()
     {
-        SetButtonText();
+        SetButtonColor();
     }
 
-    public void SetButtonText()
+    public void SetButtonColor()
     {
         int currentValue = PlayerPrefs.GetInt(value, 1);
 
-        buttonText.text = currentValue == 1 ? "Turn Off" : "Turn On";
+        buttonImage.sprite = currentValue == 1 ? activeImg : deactImg;
     }
 
     public void ToggleValue()
     {
         int currentValue = PlayerPrefs.GetInt(value, 1);
-        int newValue = currentValue == 1 ? 0 : 1;
+        int newValue = 1 - currentValue;
 
         PlayerPrefs.SetInt(value, newValue);
         PlayerPrefs.Save();
 
-        SetButtonText();
+        SetButtonColor();
     }
 }
