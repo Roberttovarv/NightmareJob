@@ -104,11 +104,16 @@ public class LevelSelector : MonoBehaviour
             UpdateNavigationButtons();
         }
         firstButton = buttons[0];
-        if (!firstButton.GetComponentInChildren<Button>().interactable)
+        if (!firstButton.GetComponent<Button>().interactable)
         {
             firstButton = prevButton;
         }
         ;
+        if (InputDeviceManager.isController)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
     }
 
     public void PrevPage()
@@ -120,7 +125,11 @@ public class LevelSelector : MonoBehaviour
             UpdateNavigationButtons();
         }
         firstButton = buttons[0];
-
+        if (InputDeviceManager.isController)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
     }
 
     void UpdateNavigationButtons()

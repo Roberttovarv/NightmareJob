@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 
 public class GameplayUI : MonoBehaviour
 {
@@ -18,27 +20,27 @@ public class GameplayUI : MonoBehaviour
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
     }
 
-void Awake()
-{
-    if (instance != null)
+    void Awake()
     {
-        Destroy(gameObject);
-        return;
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        pausePanel.SetActive(false);
+        helpPanel.SetActive(false);
     }
 
-    instance = this;
-    DontDestroyOnLoad(gameObject);
-
-    SceneManager.sceneLoaded += OnSceneLoaded;
-
-    pausePanel.SetActive(false);
-    helpPanel.SetActive(false);
-}
-
-void OnDestroy()
-{
-    SceneManager.sceneLoaded -= OnSceneLoaded;
-}
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         isLevel = scene.name.Contains("Level ");
@@ -93,5 +95,4 @@ void OnDestroy()
             mnkLayout.SetActive(true);
         }
     }
-
 }

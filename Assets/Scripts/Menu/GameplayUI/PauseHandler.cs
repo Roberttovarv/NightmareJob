@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseHandler : MonoBehaviour
 {
+    HandleImage imgHandler;
+
+    void Start()
+    {
+        imgHandler = FindFirstObjectByType<HandleImage>();
+
+    }
     public void GoToMenu()
     {
         SceneManager.LoadScene("Menu");
