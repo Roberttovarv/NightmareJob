@@ -47,8 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 8570341205576254443}
-  langCode: 
-  currentLevel: 0
 --- !u!114 &866856191826281303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,13 +160,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b92751bcb5b9f1e4ebef4a33879b8c2d, type: 2}
     - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
       propertyPath: m_fontSizeMin
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 80f09cf62bd856b47a091e1696f32b2a, type: 2}
+      objectReference: {fileID: 2100000, guid: a450d81b65fcae1498baeaab8e8f5eb5, type: 2}
     - target: {fileID: 5191744669746165294, guid: 6f11533ecf491204c8d342c57321b005, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1

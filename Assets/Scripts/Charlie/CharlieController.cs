@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 
 public class CharlieController : MonoBehaviour
 {
+    private const string DeathsKey = "deaths";
+
     [SerializeField] public Rigidbody2D rigidBody;
     [SerializeField] public Collider2D feetCollider;
     [SerializeField] public Collider2D bodyCollider;
@@ -45,21 +47,46 @@ public class CharlieController : MonoBehaviour
 
     void Die()
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")))
         {
             isAlive = false;
             StartCoroutine(Reload);
             transform.eulerAngles = new Vector3(0, 0, 90);
+
+            int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
+            PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
+            PlayerPrefs.Save();
+
+            DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
+            deaths.RefreshText();
+
+            print(currentDeaths);
         }
     }
 
     public void Kill()
     {
-        {
+            if (!isAlive)
+            {
+                return;
+            }
+
             isAlive = false;
             StartCoroutine(Reload);
             transform.eulerAngles = new Vector3(0, 0, 90);
-        }
+            
+            int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
+
+            PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
+            PlayerPrefs.Save();
+
+            DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
+            deaths.RefreshText();
     }
     void OnHint()
     {

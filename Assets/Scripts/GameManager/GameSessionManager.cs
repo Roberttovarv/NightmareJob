@@ -8,6 +8,7 @@ public class GameSessionManager : MonoBehaviour
     private const string LanguageKey = "language";
     private const string MusicKey = "musicValue";
     private const string SoundKey = "soundValue";
+    private const string DeathsKey = "deaths";
 
     [SerializeField] TextMeshProUGUI levelText;
 
@@ -84,6 +85,11 @@ public class GameSessionManager : MonoBehaviour
         if (!PlayerPrefs.HasKey(LanguageKey))
         {
             PlayerPrefs.SetString(LanguageKey, GetDefaultLanguage());
+            saveNeeded = true;
+        }
+        if (!PlayerPrefs.HasKey(DeathsKey))
+        {
+            PlayerPrefs.SetInt(DeathsKey, 0);
             saveNeeded = true;
         }
 
