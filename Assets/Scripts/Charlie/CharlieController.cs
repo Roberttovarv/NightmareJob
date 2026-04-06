@@ -1,5 +1,9 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 
 public class CharlieController : MonoBehaviour
@@ -14,10 +18,12 @@ public class CharlieController : MonoBehaviour
     public bool isGrounded;
 
     IEnumerator Reload;
+    GameplayUI ui;
 
     void Start()
     {
         Reload = FindAnyObjectByType<ScenesManager>().ReloadDelay();
+        ui = FindAnyObjectByType<GameplayUI>();
     }
 
     void Update()
@@ -47,12 +53,45 @@ public class CharlieController : MonoBehaviour
         }
     }
 
-        public void Kill()
+    public void Kill()
     {
         {
             isAlive = false;
             StartCoroutine(Reload);
             transform.eulerAngles = new Vector3(0, 0, 90);
+        }
+    }
+    void OnHint()
+    {
+        if (GameSessionManager.IsPaused)
+        {
+            ui.DeactivateHelp();
+        }
+        else
+        {
+            Button button = ui.helpPanel.GetComponentInChildren<Button>();
+            EventSystem.current.SetSelectedGameObject(button.gameObject);
+            ui.ActivateHelp();
+        }
+        print("PResionado");
+    }
+
+    void OnPause()
+    {
+
+    bool isGamepad = Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame;
+        if (GameSessionManager.IsPaused)
+        {
+            ui.DeactivatePause();
+        }
+        else
+        {
+            if (isGamepad)
+            {
+                Button button = ui.pausePanel.GetComponentInChildren<Button>();
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
+            }
+            ui.ActivatePause();
         }
     }
 

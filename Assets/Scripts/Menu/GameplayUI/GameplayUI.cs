@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 
 public class GameplayUI : MonoBehaviour
 {
     private static GameplayUI instance;
-    [SerializeField] GameObject pausePanel;
-    [SerializeField] GameObject helpPanel;
+    [SerializeField] public GameObject pausePanel;
+    [SerializeField] public GameObject helpPanel;
     [SerializeField] GameObject controllerLayout;
     [SerializeField] GameObject mnkLayout;
     [SerializeField] GameObject rootUI;
