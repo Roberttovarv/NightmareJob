@@ -16,6 +16,7 @@ public class JumpManager : MonoBehaviour
     {
         TimersManager();
     }
+
     void OnJump(InputValue value)
     {
         if (GameSessionManager.IsPaused)
@@ -24,14 +25,39 @@ public class JumpManager : MonoBehaviour
         }
         if (CanJump()) { charlie.rigidBody.linearVelocity += new Vector2(0, jumpForce); coyoteTimer = 0; }
     }
-    void TimersManager()
-    {
-        if (charlie.isGrounded) { coyoteTimer = coyoteTime; } else { coyoteTimer -= Time.deltaTime; }
-        if (coyoteTimer < 0) coyoteTimer = 0;
-    }
+
+void TimersManager()
+{
+    var charlie = FindAnyObjectByType<CharlieController>();
+
+    if (charlie == null) return;
+
+    if (charlie.isGrounded)
+        coyoteTimer = coyoteTime;
+    else
+        coyoteTimer -= Time.deltaTime;
+
+    if (coyoteTimer < 0) coyoteTimer = 0;
+}
+
     bool CanJump()
     {
-
         return coyoteTimer > 0;
     }
+
+    public void JumpFromUI()
+    {
+    var charlie = FindAnyObjectByType<CharlieController>();
+
+    if (charlie == null || charlie.rigidBody == null) return;
+
+    if (GameSessionManager.IsPaused) return;
+
+    if (CanJump())
+    {
+        charlie.rigidBody.linearVelocity += new Vector2(0, jumpForce);
+        coyoteTimer = 0;
+    }
+    }
+    
 }

@@ -17,15 +17,15 @@ public class CharlieController : MonoBehaviour
 
     [SerializeField] public bool canExit;
     [SerializeField] public bool isAlive = true;
+    WalkManager walkManager;
     public bool isGrounded;
 
-    IEnumerator Reload;
     GameplayUI ui;
 
     void Start()
     {
-        Reload = FindAnyObjectByType<ScenesManager>().ReloadDelay();
         ui = FindAnyObjectByType<GameplayUI>();
+        walkManager = FindFirstObjectByType<WalkManager>();
     }
 
     void Update()
@@ -36,8 +36,8 @@ public class CharlieController : MonoBehaviour
 
     void FixedUpdate()
     {
-        FindFirstObjectByType<WalkManager>().Walk();
-        FindFirstObjectByType<WalkManager>().Iddle();
+        walkManager.Walk();
+        walkManager.Iddle();
     }
 
     void Grounded()
@@ -55,9 +55,8 @@ public class CharlieController : MonoBehaviour
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")))
         {
             isAlive = false;
-            StartCoroutine(Reload);
+            StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelay());
             transform.eulerAngles = new Vector3(0, 0, 90);
-
             int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
             PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
             PlayerPrefs.Save();
@@ -71,22 +70,22 @@ public class CharlieController : MonoBehaviour
 
     public void Kill()
     {
-            if (!isAlive)
-            {
-                return;
-            }
+        if (!isAlive)
+        {
+            return;
+        }
 
-            isAlive = false;
-            StartCoroutine(Reload);
-            transform.eulerAngles = new Vector3(0, 0, 90);
-            
-            int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
+        isAlive = false;
+        StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelay());
+        transform.eulerAngles = new Vector3(0, 0, 90);
 
-            PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
-            PlayerPrefs.Save();
+        int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
 
-            DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
-            deaths.RefreshText();
+        PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
+        PlayerPrefs.Save();
+
+        DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
+        deaths.RefreshText();
     }
     void OnHint()
     {
@@ -106,7 +105,7 @@ public class CharlieController : MonoBehaviour
     void OnPause()
     {
 
-    bool isGamepad = Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame;
+        bool isGamepad = Gamepad.current != null && Gamepad.current.wasUpdatedThisFrame;
         if (GameSessionManager.IsPaused)
         {
             ui.DeactivatePause();

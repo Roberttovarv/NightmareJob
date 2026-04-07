@@ -15,21 +15,36 @@ public class WalkManager : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        Vector2 rawInput = value.Get<Vector2>();
+
+        if (rawInput.magnitude > 0.1f)
+        {
+            moveInput = rawInput.normalized;
+        }
+        else
+        {
+            moveInput = Vector2.zero;
+        }
     }
     public void Walk()
     {
-        if (GameSessionManager.IsPaused)
+        if (GameSessionManager.IsPaused) return;
+
+        if (!rigidBody)
         {
-            return;
+            var charlie = FindAnyObjectByType<CharlieController>();
+            if (charlie == null) return;
+
+            rigidBody = charlie.rigidBody;
         }
+
         rigidBody.linearVelocity = new Vector2(moveInput.x * walkVel, rigidBody.linearVelocityY);
 
         dir = rigidBody.linearVelocity.x < -0.1f ? -1 :
-        rigidBody.linearVelocity.x > 0.1f ? 1 : dir;
-        RotateChar();
-        animator.SetBool("isWalking", true);
+              rigidBody.linearVelocity.x > 0.1f ? 1 : dir;
 
+        RotateChar();
+        animator.SetBool("isWalking", Mathf.Abs(moveInput.x) > 0.1f);
     }
 
     public void Iddle()
@@ -45,5 +60,16 @@ public class WalkManager : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * dir;
         transform.localScale = scale;
+    }
+    public void SetHorizontalInput(float x)
+    {
+        if (rigidBody == null)
+        {
+            var charlie = FindAnyObjectByType<CharlieController>();
+            if (charlie != null)
+                rigidBody = charlie.rigidBody;
+        }
+
+        moveInput.x = x;
     }
 }
