@@ -17,9 +17,12 @@ public class GameSessionManager : MonoBehaviour
     public static int maxGameLeves = 30;
     public static string langCode;
     public static int currentLevel;
+    public static bool isMobile;
 
     void Awake()
     {
+        isMobile = Application.isMobilePlatform;
+
         int gameSessionsNumber = FindObjectsByType<GameSessionManager>(FindObjectsSortMode.None).Length;
         if (gameSessionsNumber > 1)
         {

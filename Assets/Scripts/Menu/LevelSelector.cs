@@ -10,12 +10,13 @@ public class LevelSelector : MonoBehaviour
 {
     [SerializeField] private GameObject prevButton;
     [SerializeField] private GameObject nextButton;
+    [SerializeField] private GridLayoutGroup layout;
 
     public GameObject customButton;
     public Transform buttonContainer;
 
-    public int totalLevels = 60;
-    public int levelsPerPage = 32;
+    int totalLevels = 60;
+    int levelsPerPage = 32;
     private bool lastInput;
 
     private int currentPage = 0;
@@ -24,6 +25,20 @@ public class LevelSelector : MonoBehaviour
 
     private int TotalPages => Mathf.CeilToInt((float)totalLevels / levelsPerPage);
 
+    void Awake()
+    {
+  
+        if (GameSessionManager.isMobile)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            Vector2 cellSize = layout.cellSize;
+            cellSize.x = 110;
+            cellSize.y = 140;
+            layout.cellSize = cellSize;
+            levelsPerPage = 33;
+        }
+
+    }
     void Start()
     {
         GenerateButtons();

@@ -65,7 +65,12 @@ public class SettingsLanguages : MonoBehaviour
                 }
 
                 ClosePanel();
-                EventSystem.current.SetSelectedGameObject(defaultButton);
+
+                if (!GameSessionManager.isMobile && InputDeviceManager.isController && EventSystem.current != null)
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                    EventSystem.current.SetSelectedGameObject(defaultButton);
+                }
             });
             if (firstButton == null)
             {
@@ -91,6 +96,12 @@ private IEnumerator SelectDefaultButtonNextFrame()
 
     if (EventSystem.current == null || firstButton == null)
         yield break;
+
+    if (GameSessionManager.isMobile || !InputDeviceManager.isController)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield break;
+    }
 
     EventSystem.current.SetSelectedGameObject(null);
     EventSystem.current.SetSelectedGameObject(firstButton);

@@ -3,22 +3,32 @@ using UnityEngine.InputSystem;
 
 public class Level22 : MonoBehaviour
 {
- CharlieController charlie;
+    CharlieController charlie;
     ScenesManager scene;
+
     void Start()
     {
         charlie = FindFirstObjectByType<CharlieController>();
         scene = FindFirstObjectByType<ScenesManager>();
         charlie.canExit = true;
+        charlie.onAction = HandleAction;
     }
 
     void FinishLevel()
     {
         if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door")) && charlie.canExit)
-           { scene.LoadNextLevel();}
+        {
+            scene.LoadNextLevel();
+        }
     }
+
+    void HandleAction()
+    {
+        FinishLevel();
+    }
+
     void OnAction(InputValue value)
     {
-           FinishLevel();
+        charlie.TriggerAction();
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class JumpButton : MonoBehaviour, IPointerDownHandler
 {
-    JumpManager jumpManager;
+    CharlieController charlie;
     
     void Awake()
     {
-        RefreshJumpManager();
+        RefreshCharlie();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -19,22 +19,22 @@ public class JumpButton : MonoBehaviour, IPointerDownHandler
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        RefreshJumpManager();
+        RefreshCharlie();
     }
 
-    void RefreshJumpManager()
+    void RefreshCharlie()
     {
-        jumpManager = FindFirstObjectByType<JumpManager>();
+        charlie = FindFirstObjectByType<CharlieController>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (jumpManager == null)
+        if (charlie == null)
         {
-            RefreshJumpManager();
-            if (jumpManager == null) return;
+            RefreshCharlie();
+            if (charlie == null) return;
         }
 
-        jumpManager.JumpFromUI();
+        charlie.TriggerJump();
     }
 }

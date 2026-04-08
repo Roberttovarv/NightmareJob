@@ -10,6 +10,7 @@ void Start()
     charlie = FindFirstObjectByType<CharlieController>();
     scene = FindFirstObjectByType<ScenesManager>();
     charlie.canExit = true;
+    charlie.onAction = HandleAction;
 }
 
 void FinishLevel()
@@ -21,8 +22,13 @@ void FinishLevel()
     }
 }
 
-void OnAction(InputValue value)
+void HandleAction()
 {
     FinishLevel();
+}
+
+void OnAction(InputValue value)
+{
+    charlie.TriggerAction();
 }
 }

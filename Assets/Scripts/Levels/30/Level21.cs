@@ -5,11 +5,14 @@ public class Level21 : MonoBehaviour
 {
     CharlieController charlie;
     ScenesManager scene;
+
     void Start()
     {
         charlie = FindFirstObjectByType<CharlieController>();
         scene = FindFirstObjectByType<ScenesManager>();
         charlie.canExit = true;
+        charlie.onAction = HandleAction;
+        charlie.onJump = Flip;
     }
 
     void FinishLevel()
@@ -17,9 +20,15 @@ public class Level21 : MonoBehaviour
         if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door")) && charlie.canExit)
            { scene.LoadNextLevel();}
     }
+
+    void HandleAction()
+    {
+        FinishLevel();
+    }
+
     void OnAction(InputValue value)
     {
-           FinishLevel();
+        charlie.TriggerAction();
     }
 
     void Flip()
@@ -32,7 +41,7 @@ public class Level21 : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        Flip();    
+        charlie.TriggerJump();
     }
 
 }

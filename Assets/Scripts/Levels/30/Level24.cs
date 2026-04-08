@@ -18,6 +18,7 @@ public class Level24 : MonoBehaviour
     {
         charlie = FindFirstObjectByType<CharlieController>();
         scene = FindFirstObjectByType<ScenesManager>();
+        charlie.onAction = HandleAction;
     }
 
     void FinishLevel()
@@ -28,10 +29,15 @@ public class Level24 : MonoBehaviour
             scene.LoadNextLevel();
         }
     }
-    void OnAction(InputValue value)
+    void HandleAction()
     {
         FinishLevel();
         handleLamp();
+    }
+
+    void OnAction(InputValue value)
+    {
+        charlie.TriggerAction();
     }
     void handleLamp()
     {

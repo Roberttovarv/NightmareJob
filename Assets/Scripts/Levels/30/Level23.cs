@@ -5,9 +5,11 @@ public class Level23 : MonoBehaviour
 {
     CharlieController charlie;
     ScenesManager scene;
+
     void Start()
     {
         charlie = FindFirstObjectByType<CharlieController>();
+        charlie.onAction = HandleAction;
         scene = FindFirstObjectByType<ScenesManager>();
         charlie.canExit = true;
         charlie.rigidBody.gravityScale = 3.5f;
@@ -22,6 +24,11 @@ public class Level23 : MonoBehaviour
         }
     }
     void OnAction(InputValue value)
+    {
+        charlie.TriggerAction();
+    }
+
+    void HandleAction()
     {
         FinishLevel();
     }

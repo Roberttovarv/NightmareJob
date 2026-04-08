@@ -1,9 +1,8 @@
-using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
 
 
 public class CharlieController : MonoBehaviour
@@ -17,6 +16,8 @@ public class CharlieController : MonoBehaviour
 
     [SerializeField] public bool canExit;
     [SerializeField] public bool isAlive = true;
+    public Action onAction;
+    public Action onJump;
     WalkManager walkManager;
     public bool isGrounded;
 
@@ -87,6 +88,33 @@ public class CharlieController : MonoBehaviour
         DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
         deaths.RefreshText();
     }
+
+    public void TriggerAction()
+    {
+        if (GameSessionManager.IsPaused || !isAlive)
+        {
+            return;
+        }
+
+        onAction?.Invoke();
+    }
+
+    public void TriggerJump()
+    {
+        if (GameSessionManager.IsPaused || !isAlive)
+        {
+            return;
+        }
+
+        if (onJump != null)
+        {
+            onJump.Invoke();
+            return;
+        }
+
+        FindFirstObjectByType<JumpManager>()?.JumpFromUI();
+    }
+
     void OnHint()
     {
         if (GameSessionManager.IsPaused)

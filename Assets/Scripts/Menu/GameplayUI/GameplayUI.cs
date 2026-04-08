@@ -7,8 +7,10 @@ public class GameplayUI : MonoBehaviour
     private static GameplayUI instance;
     [SerializeField] public GameObject pausePanel;
     [SerializeField] public GameObject helpPanel;
+    [SerializeField] GameObject mobileLayout;
     [SerializeField] GameObject controllerLayout;
     [SerializeField] GameObject mnkLayout;
+    [SerializeField] GameObject navButtons;
     [SerializeField] GameObject rootUI;
 
     private bool lastInput;
@@ -83,8 +85,21 @@ public class GameplayUI : MonoBehaviour
     }
     void UpdateInputUI()
     {
+        if (GameSessionManager.isMobile)
+        {
+            if (mobileLayout != null) mobileLayout.SetActive(true);
+            navButtons.SetActive(false);
+            controllerLayout.SetActive(false);
+            mnkLayout.SetActive(false);
+            return;
+        }
+
+        if (mobileLayout != null) mobileLayout.SetActive(false);
+        navButtons.SetActive(true);
+
         if (lastInput)
         {
+
             controllerLayout.SetActive(true);
             mnkLayout.SetActive(false);
         }
