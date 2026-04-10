@@ -157,4 +157,24 @@ public class LevelSelector : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
+    public void ResetData()
+    {
+        SessionPreferences.ResetData();
+        currentPage = 0;
+        RenderPage();
+        UpdateNavigationButtons();
+
+        firstButton = buttons[0];
+        if (!firstButton.GetComponent<Button>().interactable)
+        {
+            firstButton = nextButton.activeSelf ? nextButton : prevButton;
+        }
+
+        if (InputDeviceManager.isController && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstButton);
+        }
+    }
 }

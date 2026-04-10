@@ -1,22 +1,21 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Globalization;
 
 public class GameSessionManager : MonoBehaviour
 {
-    private const string LanguageKey = "language";
-    private const string MusicKey = "musicValue";
-    private const string SoundKey = "soundValue";
-    private const string DeathsKey = "deaths";
+    private const float NonDefaultResolutionYOffset = -25f;
 
     [SerializeField] TextMeshProUGUI levelText;
+    private Vector2 defaultLevelTextPosition;
+    private bool hasCachedLevelTextPosition;
 
     public static bool IsPaused { get; private set; }
 
     public static int maxGameLeves = 30;
     public static string langCode;
     public static int currentLevel;
+    public static int currentChapter;
     public static bool isMobile;
 
     void Awake()
@@ -33,7 +32,8 @@ public class GameSessionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
-        InitializeSessionData();
+        SessionPreferences.Initialize();
+        RefreshSessionState();
     }
 
     void OnDestroy()
@@ -45,7 +45,6 @@ public class GameSessionManager : MonoBehaviour
     {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         RefreshLevelText();
-
     }
 
     public void SetLevel(int levelIndex)
@@ -67,60 +66,17 @@ public class GameSessionManager : MonoBehaviour
         IsPaused = false;
     }
 
-    private void InitializeSessionData()
-    {
-        bool saveNeeded = false;
-
-        ProgressManager.InitializeProgress();
-
-        if (!PlayerPrefs.HasKey(MusicKey))
-        {
-            PlayerPrefs.SetInt(MusicKey, 1);
-            saveNeeded = true;
-        }
-
-        if (!PlayerPrefs.HasKey(SoundKey))
-        {
-            PlayerPrefs.SetInt(SoundKey, 1);
-            saveNeeded = true;
-        }
-
-        if (!PlayerPrefs.HasKey(LanguageKey))
-        {
-            PlayerPrefs.SetString(LanguageKey, GetDefaultLanguage());
-            saveNeeded = true;
-        }
-        if (!PlayerPrefs.HasKey(DeathsKey))
-        {
-            PlayerPrefs.SetInt(DeathsKey, 0);
-            saveNeeded = true;
-        }
-
-        langCode = PlayerPrefs.GetString(LanguageKey, "en");
-        if (langCode != "es" && langCode != "en")
-        {
-            langCode = "en";
-            PlayerPrefs.SetString(LanguageKey, langCode);
-            saveNeeded = true;
-        }
-
-        if (saveNeeded)
-        {
-            PlayerPrefs.Save();
-        }
-    }
-
-    private string GetDefaultLanguage()
-    {
-        string systemLanguage = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-        return systemLanguage == "es" || systemLanguage == "en" ? systemLanguage : "en";
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         currentLevel = scene.buildIndex;
-        langCode = PlayerPrefs.GetString(LanguageKey, "en");
+        RefreshSessionState();
         RefreshLevelText();
+    }
+
+    private void RefreshSessionState()
+    {
+        langCode = SessionPreferences.GetLanguage();
+        currentChapter = SessionPreferences.GetCurrentChapter();
     }
 
     private void RefreshLevelText()
@@ -130,9 +86,17 @@ public class GameSessionManager : MonoBehaviour
             return;
         }
 
+        bool shouldShowLevelText = SceneManager.GetActiveScene().name.StartsWith("Level ");
+        levelText.gameObject.SetActive(shouldShowLevelText);
+        if (!shouldShowLevelText)
+        {
+            return;
+        }
+
         if (!LevelsData.level.TryGetValue(currentLevel, out var levelData))
         {
             levelText.text = currentLevel.ToString();
+            UpdateLevelTextPosition();
             return;
         }
 
@@ -141,10 +105,35 @@ public class GameSessionManager : MonoBehaviour
             if (!levelData.TryGetValue("en", out localizedLevelText))
             {
                 levelText.text = currentLevel.ToString();
+                UpdateLevelTextPosition();
                 return;
             }
         }
 
         levelText.text = currentLevel + " - " + localizedLevelText;
+        UpdateLevelTextPosition();
+    }
+
+    private void UpdateLevelTextPosition()
+    {
+        if (levelText == null)
+        {
+            return;
+        }
+
+        RectTransform levelTextRect = levelText.rectTransform;
+        if (!hasCachedLevelTextPosition)
+        {
+            defaultLevelTextPosition = levelTextRect.anchoredPosition;
+            hasCachedLevelTextPosition = true;
+        }
+
+        bool isDefaultResolution = Screen.width == 1920 && Screen.height == 1080;
+        float yOffset = !isMobile && !isDefaultResolution ? NonDefaultResolutionYOffset : 0f;
+
+        levelTextRect.anchoredPosition = new Vector2(
+            defaultLevelTextPosition.x,
+            defaultLevelTextPosition.y + yOffset
+        );
     }
 }

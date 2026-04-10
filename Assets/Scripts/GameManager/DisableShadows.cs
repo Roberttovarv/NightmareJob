@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class DisableShadows : MonoBehaviour
 {
     void Awake()
@@ -10,3 +11,4 @@ public class DisableShadows : MonoBehaviour
         }
     }
 }
+
