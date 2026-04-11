@@ -13,8 +13,10 @@ public class TextHandler : MonoBehaviour
     void Awake()
     {
         objName = gameObject.name;
-        int maxLevel = PlayerPrefs.GetInt("MaxLevelUnlocked");
-        if (objName == "start" && maxLevel > 1)
+        int maxLevel = ProgressManager.GetMaxLevelReached();
+        int currentChapter = SessionPreferences.GetCurrentChapter();
+
+        if (objName == "start" && maxLevel > 1 && currentChapter == 0)
         {
             objName = "continue";
         }
@@ -28,7 +30,7 @@ public class TextHandler : MonoBehaviour
 
     public void RefreshText()
     {
-        lang = PlayerPrefs.GetString("language");
+        lang = PlayerPrefs.GetString(SessionPreferences.LanguageKey);
         FindKey();
 
         if (text != null)

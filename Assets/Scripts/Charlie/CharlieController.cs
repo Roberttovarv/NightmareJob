@@ -7,8 +7,6 @@ using System;
 
 public class CharlieController : MonoBehaviour
 {
-    private const string DeathsKey = "deaths";
-
     [SerializeField] public Rigidbody2D rigidBody;
     [SerializeField] public Collider2D feetCollider;
     [SerializeField] public Collider2D bodyCollider;
@@ -37,6 +35,11 @@ public class CharlieController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         walkManager.Walk();
         walkManager.Iddle();
     }
@@ -56,10 +59,11 @@ public class CharlieController : MonoBehaviour
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Spikes")))
         {
             isAlive = false;
-            StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelay());
             transform.eulerAngles = new Vector3(0, 0, 90);
-            int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
-            PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
+            StopMovementOnDeath();
+            StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelayWithoutFade());
+            int currentDeaths = PlayerPrefs.GetInt(SessionPreferences.DeathsKey);
+            PlayerPrefs.SetInt(SessionPreferences.DeathsKey, currentDeaths + 1);
             PlayerPrefs.Save();
 
             DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
@@ -77,16 +81,29 @@ public class CharlieController : MonoBehaviour
         }
 
         isAlive = false;
-        StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelay());
         transform.eulerAngles = new Vector3(0, 0, 90);
+        StopMovementOnDeath();
+        StartCoroutine(FindAnyObjectByType<ScenesManager>().ReloadDelayWithoutFade());
 
-        int currentDeaths = PlayerPrefs.GetInt(DeathsKey);
+        int currentDeaths = PlayerPrefs.GetInt(SessionPreferences.DeathsKey);
 
-        PlayerPrefs.SetInt(DeathsKey, currentDeaths + 1);
+        PlayerPrefs.SetInt(SessionPreferences.DeathsKey, currentDeaths + 1);
         PlayerPrefs.Save();
 
         DeathsManager deaths = FindAnyObjectByType<DeathsManager>();
         deaths.RefreshText();
+    }
+
+    void StopMovementOnDeath()
+    {
+        if (rigidBody == null)
+        {
+            return;
+        }
+
+        rigidBody.linearVelocity = Vector2.zero;
+        rigidBody.angularVelocity = 0f;
+        rigidBody.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void TriggerAction()

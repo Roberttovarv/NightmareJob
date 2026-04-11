@@ -11,7 +11,7 @@ public class DeathsManager : MonoBehaviour
 
     public void RefreshText()
     {
-        int totalDeaths = PlayerPrefs.GetInt("deaths");
+        int totalDeaths = PlayerPrefs.GetInt(SessionPreferences.DeathsKey);
         deaths.text = "x " + totalDeaths;
     }
 }

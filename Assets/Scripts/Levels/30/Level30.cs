@@ -18,7 +18,7 @@ void FinishLevel()
     if (charlie.rigidBody.IsTouchingLayers(LayerMask.GetMask("Door"))
     && charlie.canExit)
     {
-        scene.LoadNextLevel();
+        FinishLevel30();
     }
 }
 
@@ -31,4 +31,17 @@ void OnAction(InputValue value)
 {
     charlie.TriggerAction();
 }
+
+void FinishLevel30()
+    {
+        if (SessionPreferences.GetCurrentChapter() == 1)
+        {
+            scene.LoadCinematic();
+        }
+        else
+        {
+            scene.LoadNextLevel();
+        }
+    }
 }
+

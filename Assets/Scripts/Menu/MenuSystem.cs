@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class MenuSystem : MonoBehaviour
 {
     private bool lastInput;
     [SerializeField] GameObject firstButton;
+    ScenesManager scene;
+
+    void Start()
+    {
+       scene = FindFirstObjectByType<ScenesManager>(); 
+    }
 
     void Update()
     {
@@ -27,15 +32,15 @@ public class MenuSystem : MonoBehaviour
 
     public void Continue()
     {
-        SceneManager.LoadScene(ProgressManager.GetMaxLevelReached());
+        scene.Continue();
     }
     public void Levels()
     {
-        SceneManager.LoadScene("Levels");
+        scene.LoadLevels();
     }
     public void Settings()
     {
-        SceneManager.LoadScene("Settings");
+        scene.LoadSettings();
 
     }
     public void Quit()

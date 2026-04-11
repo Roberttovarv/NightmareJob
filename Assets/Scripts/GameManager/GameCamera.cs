@@ -39,6 +39,7 @@ public class GameCamera : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         ApplyAspect();
+        ResetCamera();
     }
 
     void Update()
@@ -50,6 +51,20 @@ public class GameCamera : MonoBehaviour
             lastHeight = Screen.height;
         }
     }
+    void LateUpdate()
+    {
+        ApplyAspect();
+    }
+    void ResetCamera()
+{
+    Camera cam = GetComponent<Camera>();
+
+    cam.transform.position = new Vector3(0, 0, -10);
+    cam.transform.rotation = Quaternion.identity;
+
+    cam.orthographicSize = 5.2f; // 👉 TU valor base
+
+}
 
     void ApplyAspect()
     {
@@ -85,7 +100,6 @@ public class GameCamera : MonoBehaviour
         }
         else
         {
-            // 👉 En móvil usar pantalla completa
             cam.rect = new Rect(0, 0, 1, 1);
         }
     }

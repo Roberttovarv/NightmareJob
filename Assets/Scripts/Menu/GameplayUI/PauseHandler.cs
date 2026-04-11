@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseHandler : MonoBehaviour
 {
@@ -12,21 +11,21 @@ public class PauseHandler : MonoBehaviour
     }
     public void GoToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        FindFirstObjectByType<ScenesManager>().LoadMenu();
         FindAnyObjectByType<GameplayUI>().DeactivatePause();
     }
     public void ManageSound()
     {
-        int currentValue = PlayerPrefs.GetInt("soundValue");
+        int currentValue = PlayerPrefs.GetInt(SessionPreferences.SoundKey);
         int newValue = 1 - currentValue;
-        PlayerPrefs.SetInt("soundValue", newValue);
+        PlayerPrefs.SetInt(SessionPreferences.SoundKey, newValue);
         PlayerPrefs.Save();
     }
     public void ManageMusic()
     {
-        int currentValue = PlayerPrefs.GetInt("musicValue");
+        int currentValue = PlayerPrefs.GetInt(SessionPreferences.MusicKey);
         int newValue = 1 - currentValue;
-        PlayerPrefs.SetInt("musicValue", newValue);
+        PlayerPrefs.SetInt(SessionPreferences.MusicKey, newValue);
         PlayerPrefs.Save();
     }
     public void Continue()

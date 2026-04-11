@@ -48,7 +48,7 @@ public class SettingsLanguages : MonoBehaviour
 
             buttonObject.GetComponent<Button>().onClick.AddListener(() =>
             {
-                PlayerPrefs.SetString("language", currentLang.ToString());
+                PlayerPrefs.SetString(SessionPreferences.LanguageKey, currentLang.ToString());
                 settings.buttonText.text = lang.ToString().ToUpperInvariant();
                 PlayerPrefs.Save();
 

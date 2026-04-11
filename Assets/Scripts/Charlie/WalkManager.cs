@@ -15,6 +15,8 @@ public class WalkManager : MonoBehaviour
     }
     void OnMove(InputValue value)
     {
+        var charlie = FindAnyObjectByType<CharlieController>();
+        if (!charlie.isAlive) return;
         Vector2 rawInput = value.Get<Vector2>();
 
         if (rawInput.magnitude > 0.1f)

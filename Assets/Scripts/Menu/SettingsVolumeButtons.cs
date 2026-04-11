@@ -23,7 +23,7 @@ public class SettingsVolumeButtons : MonoBehaviour
     void Awake()
     {
         buttonImage = GetComponentInChildren<Image>();
-        value = type == Type.music ? "musicValue" : "soundValue";
+        value = type == Type.music ? SessionPreferences.MusicKey : SessionPreferences.SoundKey;
     }
 
     void Start()

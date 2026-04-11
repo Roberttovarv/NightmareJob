@@ -78,7 +78,7 @@ public static class SessionPreferences
     {
         PlayerPrefs.SetInt(DeathsKey, 0);
         PlayerPrefs.SetInt(CurrentChapterKey, 0);
-        PlayerPrefs.SetInt("MaxLevelUnlocked", 0);
+        PlayerPrefs.SetInt(ProgressManager.MaxLevelKey, 0);
         PlayerPrefs.SetString(LanguageKey, "en");
         PlayerPrefs.Save();
     }

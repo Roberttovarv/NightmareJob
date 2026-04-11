@@ -2,7 +2,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class SettingsSystem : MonoBehaviour
 {
@@ -20,7 +19,7 @@ public class SettingsSystem : MonoBehaviour
     void Start()
     {
         languagePanel.SetActive(false);
-        buttonText.text = PlayerPrefs.GetString("language").ToUpperInvariant();
+        buttonText.text = PlayerPrefs.GetString(SessionPreferences.LanguageKey).ToUpperInvariant();
         lastInput = InputDeviceManager.isController;
         RefreshSelection();
     }
@@ -36,7 +35,7 @@ public class SettingsSystem : MonoBehaviour
 
     public void GoToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        FindFirstObjectByType<ScenesManager>().LoadMenu();
     }
 
     public void OpenLaguages()

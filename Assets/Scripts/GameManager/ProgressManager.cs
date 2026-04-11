@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class ProgressManager
 {
-    private const string MaxLevelKey = "MaxLevelUnlocked";
+    public const string MaxLevelKey = "maxLevelReached";
     private const int MinLevel = 1;
-    private const int MaxLevel = 60;
+    private const int MaxLevel = 90;
 
     public static void InitializeProgress()
     {

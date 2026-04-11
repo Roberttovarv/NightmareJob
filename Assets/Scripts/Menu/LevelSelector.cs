@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
@@ -99,7 +98,7 @@ public class LevelSelector : MonoBehaviour
                 int capturedLevel = levelNumber;
                 button.onClick.AddListener(() =>
                 {
-                    SceneManager.LoadScene(capturedLevel);
+                    FindFirstObjectByType<ScenesManager>().LoadLevel(capturedLevel);
                 });
             }
             else
@@ -155,7 +154,7 @@ public class LevelSelector : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene("Menu");
+        FindFirstObjectByType<ScenesManager>().LoadMenu();
     }
 
     public void ResetData()
